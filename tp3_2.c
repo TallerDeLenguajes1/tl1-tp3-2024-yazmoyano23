@@ -6,6 +6,7 @@
 
 void cargarMatriz(float *p_matriz);
 void mostrarMatriz(float *p_matriz);
+void promedio_ganancia(float *p_matriz);
 
 int main(){
     srand(time(NULL));
@@ -15,7 +16,7 @@ int main(){
 
     cargarMatriz(puntero);
     mostrarMatriz(puntero);
-    
+    promedio_ganancia(puntero);
 
     return 0;
 }
@@ -35,7 +36,7 @@ void cargarMatriz(float *p_matriz){
 void mostrarMatriz(float *p_matriz){
     for (int i = 0; i < N; i++) 
     {
-        for (int j = 0; j < M; j++)  
+        for (int j = 0; j < M; j++)  //pasa por todas las columnas
         { 
             printf("%2.f ", *(p_matriz + (i * M + j)));
         }
@@ -43,3 +44,27 @@ void mostrarMatriz(float *p_matriz){
         
     }
 }
+
+//c. Saque el promedio de ganancia por año y muestrelos por pantalla
+
+void promedio_ganancia(float *p_matriz){
+
+    float sum, promedio_anual;
+
+    for (int i = 0; i < N; i++) 
+    {
+        sum = 0, promedio_anual = 0; //suma esta en 0 en la primera fila
+        for (int j = 0; j < M; j++)  //pasa por todas las columnas-años
+        { 
+
+            sum = sum + *(p_matriz + (i * M + j));
+
+        }
+        promedio_anual = sum / 12;
+        printf("\nPromedio ganancia anio %d : %2.f", i + 1, promedio_anual);
+        
+    }
+    
+}
+
+// PUNTO 3 : char es un vector dinamico con 5 nombres (el dibujo esta mal)
