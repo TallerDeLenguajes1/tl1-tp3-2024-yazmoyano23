@@ -6,7 +6,8 @@
 
 void cargarMatriz(float *p_matriz);
 void mostrarMatriz(float *p_matriz);
-void promedio_ganancia(float *p_matriz);
+void promedioGanancia(float *p_matriz);
+void obtenerGananciaMaxMin(float *p_matriz);
 
 int main(){
     srand(time(NULL));
@@ -16,7 +17,8 @@ int main(){
 
     cargarMatriz(puntero);
     mostrarMatriz(puntero);
-    promedio_ganancia(puntero);
+    promedioGanancia(puntero);
+    obtenerGananciaMaxMin(puntero);
 
     return 0;
 }
@@ -47,13 +49,13 @@ void mostrarMatriz(float *p_matriz){
 
 //c. Saque el promedio de ganancia por año y muestrelos por pantalla
 
-void promedio_ganancia(float *p_matriz){
+void promedioGanancia(float *p_matriz){
 
     float sum, promedio_anual;
 
     for (int i = 0; i < N; i++) 
     {
-        sum = 0, promedio_anual = 0; //suma esta en 0 en la primera fila
+        sum = 0, promedio_anual = 0; //se inicializa la suma y el promedio para cada año
         for (int j = 0; j < M; j++)  //pasa por todas las columnas-años
         { 
 
@@ -66,5 +68,37 @@ void promedio_ganancia(float *p_matriz){
     }
     
 }
+
+void obtenerGananciaMaxMin(float * p_matriz){   
+
+    int max_i = 0, max_j = 0, min_i = 0, min_j = 0;
+    float max, min ; 
+    max = *(p_matriz);
+    min = *(p_matriz);
+
+
+    for (int i = 0; i < N; i++)
+    {
+       for (int j = 0; j < M; j++)
+       {
+            if ( *(p_matriz + (i * M + j))  > max)
+            {
+                max_i = i; //año
+                max_j = j; //mes
+                max = *(p_matriz + (i * M + j));
+            }
+
+            if ( *(p_matriz + (i * M + j)) < min)
+            {
+                min_i = i;
+                min_j = j;
+                min = *(p_matriz + (i * M + j));
+            }          
+       }
+    }  
+    printf("\n\nGanancia maxima: %2.f  Anio: %d  Mes: %d", max, max_i + 1, max_j + 1);
+    printf("\nGanancia minima: %2.f  Anio: %d  Mes: %d", min, min_i + 1, min_j + 1);  
+}
+
 
 // PUNTO 3 : char es un vector dinamico con 5 nombres (el dibujo esta mal)
