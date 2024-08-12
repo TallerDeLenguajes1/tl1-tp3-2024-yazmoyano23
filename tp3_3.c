@@ -23,7 +23,7 @@ int main(){
     }
     
 
-    printf("\n\n---NOMBRES---\n");
+    printf("\n---NOMBRES---\n");
     for (int i = 0; i < MAX; i++)
     {
         puts(nombres[i]);
